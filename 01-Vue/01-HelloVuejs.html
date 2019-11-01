@@ -5,7 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-<script src="./../js/vue.js"></script>
 
+<div id="app">{{message}}</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello, Vue'
+        }
+    })
+</script>
 </body>
 </html>
