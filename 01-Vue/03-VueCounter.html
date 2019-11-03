@@ -8,8 +8,10 @@
 
 <div id="app">
     <h2>当前计数: {{counter}}</h2>
-    <button v-on:click="counter++">+</button>
-    <button v-on:click="counter--">-</button>
+<!--    <button v-on:click="counter++">+</button>-->
+<!--    <button v-on:click="counter&#45;&#45;">-</button>-->
+    <button v-on:click="add">+</button>
+    <button v-on:click="sub">-</button>
 </div>
 
 <script src="../js/vue.js"></script>
@@ -20,8 +22,15 @@
         data: {
             counter: 0
         },
-        method: {
-
+        methods: {
+            add: function () {
+                console.log('add 被执行')
+                this.counter++
+            },
+            sub: function () {
+                console.log('sub 被执行')
+                this.counter--
+            }
         }
     })
 </script>
