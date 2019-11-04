@@ -24,11 +24,12 @@
     // 如何工作
     // 首先 ViewModel 通过 Data Binding 让 obj 中的数据实时的在 DOM 中显示。
     // 其次 ViewModel 通过 DOM Listening 来监听 DOM 事件，并且通过 methods 中的操作，来改变 obj 中的数据。
+    const obj = {
+        counter: 0
+    }
     const app = new Vue({
         el: '#app',
-        data: {
-            counter: 0
-        },
+        data: obj,
         methods: {
             add: function () {
                 console.log('add 被执行')
