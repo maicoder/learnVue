@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Title</title>
 </head>
 <body>
 
 <div id="app1">{{message}}</div>
 <div id="app">
-    <h2>Hello {{name}}</h2>
+  <h2>Hello {{name}}</h2>
 </div>
 
 <script src="../js/vue.js"></script>
 <script>
-    // 创建 Vue 实例，对上面的原HTML进行解析和修改。
-    const app = new Vue({
-        el: '#app',
-        data: {
-            message: 'Hello, Vue',
-            name: 'Today'
-        }
-    })
+  // 创建 Vue 实例，对上面的原HTML进行解析和修改。
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello, Vue',
+      name: 'Today'
+    }
+  })
 </script>
 </body>
 </html>
