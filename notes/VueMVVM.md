@@ -11,5 +11,5 @@
 - ViewModel 层
   - 视图模型层
   - 视图模型层是 View 和 Model 沟通的桥梁。
-  - 一方面它实现了 Data Binding，也就是数据绑定，讲 Model 的改变实时的反映到 View 中
+  - 一方面它实现了 Data Binding，也就是数据绑定，将 Model 的改变实时的反映到 View 中
   - 另一方面它实现了 DOM Listener，也就是 DOM 监听，当 DOM 发生一些事件（点击，滚动，touch等）时，可以监听到，并在需要的情况下改变对应的 Data。 
