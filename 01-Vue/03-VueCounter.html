@@ -39,6 +39,12 @@
                 console.log('sub 被执行')
                 this.counter--
             }
+        },
+        created: function () {
+            console.log('created');
+        },
+        mounted: function () {
+            console.log('mounted');
         }
     })
 </script>
