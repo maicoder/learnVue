@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+<!--  错误的做法：不能使用 Mustache 语法-->
+  <img v-bind:src="imgURL" alt="">
+  <a v-bind:href="aHref">百度一下</a>
+<!--  v-bind 语法糖-->
+  <img :src="imgURL" alt="">
+  <a :href="aHref">百度一下</a>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello,Vue',
+      imgURL: "https://www.bing.com/th?id=OHR.LouvreAutumn_ZH-CN3206208609_1920x1080.jpg",
+      aHref: 'http://www.baidu.com'
+    }
+  })
+</script>
+
+</body>
+</html>
