@@ -7,14 +7,22 @@
 <body>
 
 <div id="app">
-  <h2 class="title" v-band:class="['active', 'line']">{{message}}</h2>
-</div>
+  <h2 class="title" v-bind:class="['active', 'line']">{{message}}</h2>
+  <h2 class="title" v-bind:class="[active, line]">{{message}}</h2>
+  <h2 class="title" v-bind:class="getClasses()">{{message}}</h2>
 <script src="../js/vue.js"></script>
 <script>
   const app = new Vue({
     el: '#app',
     data: {
-      message: 'Hello,Vue'
+      message: 'Hello,Vue',
+      active: 'aaaaaa',
+      line: 'bbbbbbb'
+    },
+    methods: {
+      getClasses: function () {
+        return [this.active, this.line]
+      }
     }
   })
 </script>
