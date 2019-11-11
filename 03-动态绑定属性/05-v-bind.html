@@ -16,6 +16,7 @@
 <!--  finalSize当成一个变量使用-->
 <!--  <h2  :style="{fontSize: finalSize}">{{message}}</h2>-->
   <h2 :style="{fontSize: finalSize + 'px', backgroundColor: finalColor}">{{message}}</h2>
+  <h2 :style="getStyles()">{{message}}</h2>
 </div>
 
 <script src="../js/vue.js"></script>
@@ -26,6 +27,11 @@
       message: 'Hello,Vue',
       finalSize: 100,
       finalColor: 'red'
+    },
+    methods: {
+      getStyles: function () {
+        return {fontSize: this.finalSize + 'px', backgroundColor: this.finalColor}
+      }
     }
   })
 </script>
