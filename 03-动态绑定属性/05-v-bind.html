@@ -15,7 +15,7 @@
 
 <!--  finalSize当成一个变量使用-->
 <!--  <h2  :style="{fontSize: finalSize}">{{message}}</h2>-->
-  <h2 :style="{fontSize: finalSize + 'px'}">{{message}}</h2>
+  <h2 :style="{fontSize: finalSize + 'px', color: finalColor}">{{message}}</h2>
 </div>
 
 <script src="../js/vue.js"></script>
@@ -24,7 +24,8 @@
     el: '#app',
     data: {
       message: 'Hello,Vue',
-      finalSize: 100
+      finalSize: 100,
+      finalColor: 'red'
     }
   })
 </script>
