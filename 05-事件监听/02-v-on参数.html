@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!--1.事件调用时方法没有参数-->
+<button @click="btn1Click()">按钮1</button>
+<button @click="btn1Click">按钮1</button>
+
+<button >按钮2</button>
+<button>按钮3</button>
+<button>按钮4</button>
+<button>按钮5</button>
+
+
+<div id="app">{{message}}</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello,Vue'
+    },
+    methods: {
+      btn1Click: function () {
+        console.log("btnClick");
+      },
+      btn2Click(abc) {
+        console.log("---------", abc);
+      }
+    }
+  })
+</script>
+
+</body>
+</html>
