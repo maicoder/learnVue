@@ -22,8 +22,10 @@
 <!--  监听某个键盘的键帽-->
   <input type="text" @keyup.enter="keyUp">
 <!--  .native: 监听组件根元素的原生事件-->
-<!--  .once： 只触发一次回调-->
 
+<!--  .once： 只触发一次回调-->
+  <br>
+  <button @click.once="btn2Click">按钮2</button>
   <h2>{{message}}</h2>
 </div>
 <script src="../js/vue.js"></script>
@@ -45,6 +47,9 @@
       },
       keyUp() {
         console.log("keyUp");
+      },
+      btn2Click() {
+        console.log("btn2Click");
       }
     }
   })
