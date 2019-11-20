@@ -50,11 +50,30 @@ const app = new Vue({
   },
   computed: {
     totalPrice() {
-      let totalPrice = 0
-      for (let i = 0; i < this.books.length; i++) {
-        totalPrice += this.books[i].price * this.books[i].count
-      }
-      return totalPrice
+      // let totalPrice = 0
+
+      // for (let i = 0; i < this.books.length; i++) {
+      //   totalPrice += this.books[i].price * this.books[i].count
+      // }
+
+      // for (let i in this.books) {
+      //   const book = this.books[i]
+      //   totalPrice += book.price * book.count
+      // }
+
+      // for (let item of this.books) {
+      //   totalPrice += item.price * item.count
+      // }
+
+      // return totalPrice
+
+      // reduce
+      // return this.books.reduce(function (pre, n) {
+      //   return pre + n.count * n.price
+      // }, 0)
+
+      // reduce 箭头函数
+      return this.books.reduce((pre, book) => pre + book.price * book.count, 0)
     }
   },
   filters: {
