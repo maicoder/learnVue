@@ -26,7 +26,7 @@
 
   <br>
   <br>
-<!--  值绑定-->
+<!--  值绑定：动态绑定从网络获取的动态数据-->
   <label v-for="item in originHobbies" :for="item">
     <input type="checkbox" :value="item" :id="item" v-model="hobbies">{{item}}
   </label>
