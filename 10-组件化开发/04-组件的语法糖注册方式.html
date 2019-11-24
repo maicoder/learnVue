@@ -23,11 +23,14 @@
     `
   })
 
+  // 省去了调用Vue.extend()的步骤，而是可以直接使用一个对象来代替
+  
   const app = new Vue({
     el: '#app',
     data: {
       message: 'Hello,Vue'
     },
+    // 注册局部组件的语法糖
     components: {
       'cpn2': {
         template:`
