@@ -7,6 +7,7 @@
 <body>
 
 <div id="app">
+  <mycpn1></mycpn1>
   <mycpn2></mycpn2>
 </div>
 <script src="../js/vue.js"></script>
@@ -37,12 +38,14 @@
     }
   })
 
+  // root组件
   const app = new Vue({
     el: '#app',
     data: {
       message: 'Hello,Vue'
     },
     components: {
+      mycpn1: cpnC1,
       mycpn2: cpnC2
     }
   })
