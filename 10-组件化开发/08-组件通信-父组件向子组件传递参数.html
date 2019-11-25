@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!--组件数据传递-->
+<!--通过props向子组件传递数据；通过自定义事件向父组件发送消息-->
+<!--父组件向子组件传递参数-->
+
+<div id="app">
+  <cpn v-bind:cmovies="movies"></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    {{cmovies}}
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  const cpn = {
+    template: '#cpn',
+    props: ['cmovies'],
+    data: function () {
+      return {
+
+      }
+    },
+    methods: {
+
+    }
+  }
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello,Vue',
+      movies: ['海王', '海贼王', '海尔兄弟']
+    },
+    components: {
+      cpn
+    }
+  })
+</script>
+
+</body>
+</html>
