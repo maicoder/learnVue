@@ -16,7 +16,9 @@
 
 <template id="cpn">
   <div>
-    <p>{{cmovies}}</p>
+    <ul>
+      <li v-for="item in cmovies">{{item}}</li>
+    </ul>
     <h2>{{cmessage}}</h2>
   </div>
 </template>
