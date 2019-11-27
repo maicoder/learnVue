@@ -11,12 +11,13 @@
 <!--父组件向子组件传递参数-->
 
 <div id="app">
-  <cpn v-bind:cmovies="movies"></cpn>
+  <cpn v-bind:cmovies="movies" :cmessage="message"></cpn>
 </div>
 
 <template id="cpn">
   <div>
-
+    <p>{{cmovies}}</p>
+    <h2>{{cmessage}}</h2>
   </div>
 </template>
 
@@ -24,7 +25,7 @@
 <script>
   const cpn = {
     template: '#cpn',
-    props: ['cmovies'],
+    props: ['cmovies', 'cmessage'],
     data: function () {
       return {
 
