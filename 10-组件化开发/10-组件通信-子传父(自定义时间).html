@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!--父组件模版-->
+<div id="app">{{message}}</div>
+
+<!--子组件模版-->
+<template id="cpn">
+  <div>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  // 1 子组件
+  const cpn = {
+    template: '#cpn'
+  }
+
+  //2 父组件
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello,Vue'
+    },
+    components: {
+      cpn
+    }
+  })
+</script>
+
+</body>
+</html>
