@@ -38,6 +38,7 @@
     },
     methods: {
       btnClick(item) {
+        // 自定义事件
         // console.log(item);
         this.$emit('item-click', item)
       }
@@ -54,8 +55,8 @@
       cpn
     },
     methods: {
-      cpnClick() {
-        console.log('cpnClick');
+      cpnClick(item) {
+        console.log('cpnClick', item);
       }
     }
   })
