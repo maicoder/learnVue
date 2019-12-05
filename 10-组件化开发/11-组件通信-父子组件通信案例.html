@@ -55,12 +55,22 @@
         },
         methods: {
           num1Input(event) {
+            // 将input中的value赋值到dnumber中
             this.dnumber1 = event.target.value;
+
+            // 为了让父组件可以修改值，发出一个事件
             this.$emit('num1change', this.dnumber1);
+
+            // 同时修饰dnumber2的值
+            this.dnumber2 = this.dnumber1 * 100;
+            this.$emit('num2change', this.dnumber2)
           },
           num2Input(event) {
             this.dnumber2 = event.target.value;
             this.$emit('num2change', this.dnumber2);
+
+            this.dnumber1 = this.dnumber2 / 100;
+            this.$emit('num1change', this.dnumber1)
           }
         }
       }
