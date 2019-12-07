@@ -7,7 +7,9 @@
 <body>
 
 <div id="app">
-  <cpn></cpn>
+  <cpn ref="ccc"></cpn>
+  <cpn ref="bbb"></cpn>
+  <cpn ref="aaa"></cpn>
   <button @click="btnClick">按钮</button>
 </div>
 
@@ -26,12 +28,25 @@
     },
     methods: {
       btnClick() {
-        console.log(this.$children)
+        // 1. $children 数组
+        // console.log(this.$children);
+        // for (let c of this.$children) {
+        //   console.log(c.name);
+        //   c.showMessage();
+        // }
+
+        // 2.$refs => 对象类型，默认是一个空的对象类型
+        console.log(this.$refs.ccc.name);
       }
     },
     components: {
       cpn: {
         template: '#cpn',
+        data() {
+          return {
+            name: '我是子组件的name'
+          }
+        },
         methods: {
           showMessage() {
             console.log('showMessage');
