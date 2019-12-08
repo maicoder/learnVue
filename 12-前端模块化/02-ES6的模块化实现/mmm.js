@@ -19,3 +19,13 @@ console.log(mul(30, 50));
 
 const p = new Person();
 p.run();
+
+// 导入 export default 中的内容
+import addr from "./aaa.js";
+addr('Hello, Vue');
+
+// 统一全部导入
+import * as aaa from "./aaa.js"
+
+console.log(aaa.flag);
+console.log(aaa.height);
