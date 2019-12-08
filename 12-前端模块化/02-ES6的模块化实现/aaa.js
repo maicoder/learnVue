@@ -29,3 +29,11 @@ export class Person {
     console.log('running');
   }
 }
+
+// 5. export default 同一个模块，只能存在一个 export default,
+// const  address = 'Beijing'
+// export default address;
+
+export default function (argument) {
+  console.log(argument);
+}
