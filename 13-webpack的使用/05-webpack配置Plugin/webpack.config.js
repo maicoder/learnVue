@@ -74,5 +74,9 @@ module.exports = {
         template: 'index.html'
       }),
       new UglifyjsWebpackPlugin()
-  ]
+  ],
+  devServer: {
+    contentBase: './dist',
+    inline: true
+  }
 }
