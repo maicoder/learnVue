@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 
 // output 的path动态获取
 
@@ -71,6 +72,7 @@ module.exports = {
       new webpack.BannerPlugin('最终版权归me所有'),
       new HtmlWebpackPlugin({
         template: 'index.html'
-      })
+      }),
+      new UglifyjsWebpackPlugin()
   ]
 }
