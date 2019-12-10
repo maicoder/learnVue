@@ -17,3 +17,26 @@ require('./css/normal.css')
 // 4.依赖 less 文件
 require('./css/special.less')
 document.writeln('<h2>Hello,Vue</h2>')
+
+// 5. 使用 Vue 进行开发
+import Vue from 'vue'
+
+const app = new Vue({
+  el: '#app',
+  template: `
+  <div>
+    <h2>{{message}}</h2>
+    <button @click="btnClick">按钮</button>
+    <h2>{{name}}</h2>
+  </div>
+  `,
+  data: {
+    message: 'Hello Webpack',
+    name: 'Vuer'
+  },
+  methods: {
+    btnClick() {
+
+    }
+  }
+})
