@@ -6,7 +6,8 @@ module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: 'dist/'
   },
   module: {
     rules: [
@@ -26,6 +27,30 @@ module.exports = {
         }, {
           loader: "less-loader" // compiles Less to CSS
         }]
+      },
+      {
+        test: /\.(png|jpg|gif|jpeg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              // 当加载的图片，小于 limit 时，会将图片编译成 base64 字符串形式
+              // 当加载的图片，大于 limit 时，需要使用 file-loader 模块进行加载
+              limit: 20480,
+              name: 'img/[name].[hash:8].[ext]'  //img 的 name 处理： img位置， 名字，hash 截取8位，格式
+            }
+          }
+        ]
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015']
+          }
+        }
       }
     ]
   }

@@ -57,7 +57,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "dist/";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 2);
@@ -449,13 +449,17 @@ module.exports = function (list, options) {
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_info__ = __webpack_require__(4);
+
+
+var _info = __webpack_require__(3);
+
 // 使用 CommonJS 的模块化规范
-const {add, mul} = __webpack_require__(3)
+var _require = __webpack_require__(4),
+    add = _require.add,
+    mul = _require.mul;
 
 console.log(add(20, 30));
 console.log(mul(20, 30));
@@ -463,47 +467,49 @@ console.log(mul(20, 30));
 // 使用 ES6 的模块化规范
 
 
-console.log(__WEBPACK_IMPORTED_MODULE_0__js_info__["c" /* name */]);
-console.log(__WEBPACK_IMPORTED_MODULE_0__js_info__["a" /* age */]);
-console.log(__WEBPACK_IMPORTED_MODULE_0__js_info__["b" /* height */]);
+console.log(_info.name);
+console.log(_info.age);
+console.log(_info.height);
 
 // 3.依赖css文件
-__webpack_require__(5)
+__webpack_require__(5);
 
 // 4.依赖 less 文件
-__webpack_require__(7)
-document.writeln('<h2>Hello,Vue</h2>')
+__webpack_require__(9);
+document.writeln('<h2>Hello,Vue</h2>');
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function add(num1, num2) {
-  return num1 + num2
-}
+"use strict";
 
-function mul(num1, num2) {
-  return num1 * num2
-}
 
-module.exports = {
-  add, mul
-}
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var name = exports.name = 'Hello';
+var age = exports.age = 18;
+var height = exports.height = 1.88;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-const name = 'Hello';
-/* harmony export (immutable) */ __webpack_exports__["c"] = name;
 
-const  age = 18;
-/* harmony export (immutable) */ __webpack_exports__["a"] = age;
 
-const height = 1.88;
-/* harmony export (immutable) */ __webpack_exports__["b"] = height;
+function add(num1, num2) {
+  return num1 + num2;
+}
 
+function mul(num1, num2) {
+  return num1 * num2;
+}
+
+module.exports = {
+  add: add, mul: mul
+};
 
 /***/ }),
 /* 5 */
@@ -532,15 +538,66 @@ if (content.locals) {
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
+// Imports
+var getUrl = __webpack_require__(7);
+var ___CSS_LOADER_URL___0___ = getUrl(__webpack_require__(8));
 // Module
-exports.push([module.i, "body {\n  background-color: red;\n}", ""]);
+exports.push([module.i, "body {\n  /*background-color: red;*/\n  background: url(" + ___CSS_LOADER_URL___0___ + ");\n}", ""]);
 
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var content = __webpack_require__(8);
+"use strict";
+
+
+module.exports = function (url, options) {
+  if (!options) {
+    // eslint-disable-next-line no-param-reassign
+    options = {};
+  } // eslint-disable-next-line no-underscore-dangle, no-param-reassign
+
+
+  url = url.__esModule ? url.default : url;
+
+  if (typeof url !== 'string') {
+    return url;
+  } // If url is already wrapped in quotes, remove them
+
+
+  if (/^['"].*['"]$/.test(url)) {
+    // eslint-disable-next-line no-param-reassign
+    url = url.slice(1, -1);
+  }
+
+  if (options.hash) {
+    // eslint-disable-next-line no-param-reassign
+    url += options.hash;
+  } // Should url be wrapped?
+  // See https://drafts.csswg.org/css-values-3/#urls
+
+
+  if (/["'() \t\n]/.test(url) || options.needQuotes) {
+    return "\"".concat(url.replace(/"/g, '\\"').replace(/\n/g, '\\n'), "\"");
+  }
+
+  return url;
+};
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "img/test.3db19942.jpg");
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var content = __webpack_require__(10);
 
 if (typeof content === 'string') {
   content = [[module.i, content, '']];
@@ -559,7 +616,7 @@ if (content.locals) {
 
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
