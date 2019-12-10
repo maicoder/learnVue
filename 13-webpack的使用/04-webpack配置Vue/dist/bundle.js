@@ -704,15 +704,25 @@ document.writeln('<h2>Hello,Vue</h2>');
 // 5. 使用 Vue 进行开发
 
 
-var app = new _vue2.default({
-  el: '#app',
+var App = {
   template: '\n  <div>\n    <h2>{{message}}</h2>\n    <button @click="btnClick">\u6309\u94AE</button>\n    <h2>{{name}}</h2>\n  </div>\n  ',
-  data: {
-    message: 'Hello Webpack',
-    name: 'Vuer'
+  data: function data() {
+    return {
+      message: 'Hello Webpack',
+      name: 'Vuer'
+    };
   },
+
   methods: {
     btnClick: function btnClick() {}
+  }
+};
+
+var app = new _vue2.default({
+  el: '#app',
+  template: '<App/>',
+  components: {
+    App: App
   }
 });
 
