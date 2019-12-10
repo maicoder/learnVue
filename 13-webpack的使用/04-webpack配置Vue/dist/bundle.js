@@ -677,10 +677,14 @@ var _vue = __webpack_require__(6);
 
 var _vue2 = _interopRequireDefault(_vue);
 
+var _app = __webpack_require__(9);
+
+var _app2 = _interopRequireDefault(_app);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // 使用 CommonJS 的模块化规范
-var _require = __webpack_require__(9),
+var _require = __webpack_require__(10),
     add = _require.add,
     mul = _require.mul;
 
@@ -695,34 +699,20 @@ console.log(_info.age);
 console.log(_info.height);
 
 // 3.依赖css文件
-__webpack_require__(10);
+__webpack_require__(11);
 
 // 4.依赖 less 文件
-__webpack_require__(14);
+__webpack_require__(15);
 document.writeln('<h2>Hello,Vue</h2>');
 
 // 5. 使用 Vue 进行开发
 
 
-var App = {
-  template: '\n  <div>\n    <h2>{{message}}</h2>\n    <button @click="btnClick">\u6309\u94AE</button>\n    <h2>{{name}}</h2>\n  </div>\n  ',
-  data: function data() {
-    return {
-      message: 'Hello Webpack',
-      name: 'Vuer'
-    };
-  },
-
-  methods: {
-    btnClick: function btnClick() {}
-  }
-};
-
 var app = new _vue2.default({
   el: '#app',
   template: '<App/>',
   components: {
-    App: App
+    App: _app2.default
   }
 });
 
@@ -12991,6 +12981,30 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  template: '\n  <div>\n    <h2>{{message}}</h2>\n    <button @click="btnClick">\u6309\u94AE</button>\n    <h2>{{name}}</h2>\n  </div>\n  ',
+  data: function data() {
+    return {
+      message: 'Hello Webpack',
+      name: 'Vuer'
+    };
+  },
+
+  methods: {
+    btnClick: function btnClick() {}
+  }
+};
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 function add(num1, num2) {
   return num1 + num2;
 }
@@ -13004,10 +13018,10 @@ module.exports = {
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var content = __webpack_require__(11);
+var content = __webpack_require__(12);
 
 if (typeof content === 'string') {
   content = [[module.i, content, '']];
@@ -13026,19 +13040,19 @@ if (content.locals) {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
 // Imports
-var getUrl = __webpack_require__(12);
-var ___CSS_LOADER_URL___0___ = getUrl(__webpack_require__(13));
+var getUrl = __webpack_require__(13);
+var ___CSS_LOADER_URL___0___ = getUrl(__webpack_require__(14));
 // Module
 exports.push([module.i, "body {\n  /*background-color: red;*/\n  background: url(" + ___CSS_LOADER_URL___0___ + ");\n}", ""]);
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13078,7 +13092,7 @@ module.exports = function (url, options) {
 };
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13086,10 +13100,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "img/test.3db19942.jpg");
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var content = __webpack_require__(15);
+var content = __webpack_require__(16);
 
 if (typeof content === 'string') {
   content = [[module.i, content, '']];
@@ -13108,7 +13122,7 @@ if (content.locals) {
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
