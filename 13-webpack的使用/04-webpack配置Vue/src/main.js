@@ -21,8 +21,7 @@ document.writeln('<h2>Hello,Vue</h2>')
 // 5. 使用 Vue 进行开发
 import Vue from 'vue'
 
-const app = new Vue({
-  el: '#app',
+const App = {
   template: `
   <div>
     <h2>{{message}}</h2>
@@ -30,13 +29,23 @@ const app = new Vue({
     <h2>{{name}}</h2>
   </div>
   `,
-  data: {
-    message: 'Hello Webpack',
-    name: 'Vuer'
+  data() {
+    return {
+      message: 'Hello Webpack',
+      name: 'Vuer'
+    }
   },
   methods: {
     btnClick() {
 
     }
+  }
+}
+
+const app = new Vue({
+  el: '#app',
+  template: '<App/>',
+  components: {
+    App
   }
 })
