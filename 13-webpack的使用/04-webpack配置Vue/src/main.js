@@ -20,8 +20,8 @@ document.writeln('<h2>Hello,Vue</h2>')
 
 // 5. 使用 Vue 进行开发
 import Vue from 'vue'
-import App from './vue/app'
-
+// import App from './vue/app'
+import App from './vue/App.vue'
 const app = new Vue({
   el: '#app',
   template: '<App/>',
