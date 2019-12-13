@@ -11,3 +11,10 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+
+// runtime-compiler(v1)
+// template -> ast -> render -> vdom -> UI
+
+// runtimeonly(v2) (1.性能更高  2.下面代码量更少)
+// render -> vdom -> UI
