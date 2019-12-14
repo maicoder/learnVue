@@ -12,6 +12,30 @@ new Vue({
   template: '<App/>'
 })
 
+// render 函数
+// render: function (createElement) {
+//   1.普通用法: createElement('标签', {标签的属性}, [''])
+//   return createElement('h2', {class: 'box'}, ['Hello World'])
+// }
+
+// render: function (createElement) {
+//   1.createElement('标签', {标签的属性}, [''])
+//   return createElement('h2', {class: 'box'}, ['Hello World', createElement('button', ['按钮'])])
+// }
+
+// 2.传入组件对象
+// const cpn = {
+//   template: <div>{{message}}</div>,
+//   data() {
+//     return {
+//       message: '我是组件message'
+//     }
+//   }
+// }
+// createElement(cpn)
+
+// 再进化成 runtimeonly
+// createElement(App)
 
 // runtime-compiler(v1)
 // template -> ast -> render -> vdom -> UI
