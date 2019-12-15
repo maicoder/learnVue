@@ -25,7 +25,8 @@ const routes = [
 const router = new Router({
   // 配置路由和组件之间的映射关系
   routes, // 默认是 url.hash
-  mode: 'history'
+  mode: 'history',
+  linkActiveClass: 'active'
 })
 
 // 3. 将 router 对象传入到 Vue 实例
