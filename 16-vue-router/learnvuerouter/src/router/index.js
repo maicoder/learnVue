@@ -3,6 +3,7 @@ import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 import Home from '../components/Home'
 import About from "../components/About";
+import User from "../components/User";
 
 // 1. 通过 Vue.use(插件)，安装插件
 Vue.use(Router)
@@ -20,6 +21,10 @@ const routes = [
   {
     path: '/about',
     component: About
+  },
+  {
+    path: '/user/:userId',
+    component: User
   }
 ]
 const router = new Router({
