@@ -27,6 +27,7 @@ const routes = [
     component: User
   }
 ]
+
 const router = new Router({
   // 配置路由和组件之间的映射关系
   routes, // 默认是 url.hash
