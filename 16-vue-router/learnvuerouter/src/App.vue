@@ -11,7 +11,10 @@
     <router-link to="/about">关于</router-link>
     <router-link v-bind:to="'/user/' + userId">用户</router-link>
 <!--    <router-link to="/profile">档案</router-link>-->
-    <router-link v-bind:to="{path: '/profile', query: {name: 'Vue', age: 18, height: 1.88}}">档案</router-link>
+<!--    <router-link v-bind:to="{path: '/profile', query: {name: 'Vue', age: 18, height: 1.88}}">档案</router-link>-->
+
+    <button @click="userClick">用户</button>
+    <button @click="profileClick">档案</button>
 
     <router-view></router-view>
   </div>
@@ -37,6 +40,19 @@ export default {
       // this.$router.push('/about')
       this.$router.replace('/about')
       console.log('aboutClick');
+    },
+    userClick() {
+      this.$router.push('/user' + this.userId)
+    },
+    profileClick() {
+      this.$router.push({
+        path: '/profile',
+        query: {
+          name: 'Vue',
+          age: 16,
+          height: 1.88
+        }
+      })
     }
   }
 }
