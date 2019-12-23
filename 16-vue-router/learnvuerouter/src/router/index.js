@@ -7,6 +7,9 @@ import Router from 'vue-router'
 
 // 懒加载
 const Home = () => import('../components/Home')
+const HomeNews = () => import('../components/HomeNews')
+const HomeMessage = () => import('../components/HomeMessage')
+
 const About = () => import('../components/About')
 const User = () => import('../components/User')
 
@@ -21,7 +24,21 @@ const routes = [
   },
   {
     path: '/home',
-    component: Home
+    component: Home,
+    children: [
+      {
+        path: '',
+        redirect: 'news'
+      },
+      {
+        path: 'news',   // 子路由不需要加 '/'
+        component: HomeNews
+      },
+      {
+        path: 'message',
+        component: HomeMessage
+      }
+    ]
   },
   {
     path: '/about',
