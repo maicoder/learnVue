@@ -16,7 +16,8 @@
     <button @click="userClick">用户</button>
     <button @click="profileClick">档案</button>
 
-    <keep-alive>
+<!--    // exclude 后面的 profile 和 user 之间不要添加空格-->
+    <keep-alive exclude="Profile,User">
       <router-view/>
     </keep-alive>
 
