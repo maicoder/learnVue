@@ -12,7 +12,16 @@
 
 <script>
   export default {
-    name: "Home"
+    name: "Home",
+    created() {
+      console.log('created');
+    },
+    mounted() {
+      console.log('mouted');
+    },
+    updated() {
+      console.log('updated');
+    }
   }
 </script>
 

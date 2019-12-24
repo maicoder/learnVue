@@ -26,6 +26,9 @@ const routes = [
   {
     path: '/home',
     component: Home,
+    meta: {
+      title: '首页'
+    },
     children: [
       {
         path: '',
@@ -43,15 +46,24 @@ const routes = [
   },
   {
     path: '/about',
-    component: About
+    component: About,
+    meta: {
+      title: '关于'
+    }
   },
   {
     path: '/user/:userId',
-    component: User
+    component: User,
+    meta: {
+      title: '用户'
+    }
   },
   {
     path: '/profile',
-    component: Profile
+    component: Profile,
+    meta: {
+      title: '档案'
+    }
   }
 ]
 
@@ -60,6 +72,19 @@ const router = new Router({
   routes, // 默认是 url.hash
   mode: 'history',
   linkActiveClass: 'active'
+})
+
+// 前置钩子（hook）回调 / 前置守卫（guard）
+router.beforeEach((to, from, next) => {
+  document.title = to.matched[0].meta.title
+  // console.log(to);
+  console.log('+++++');
+  next()
+})
+
+// 后置钩子
+router.afterEach((to, from) => {
+  console.log('-----');
 })
 
 // 3. 将 router 对象传入到 Vue 实例
