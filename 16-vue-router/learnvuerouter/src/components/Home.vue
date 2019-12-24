@@ -28,6 +28,7 @@
     destroyed() {
       console.log('home destroyed');
     },
+    // activated 和 deactivated 这两个函数只有该组件保持了状态使用了 keep-alive 时，才是有效的。
     activated() {
       // console.log('activated');
       this.$router.push(this.path)
@@ -35,6 +36,7 @@
     deactivated() {
       // console.log('deactivated');
     },
+    // 组件内的导航守卫 beforeRouteLeave
     beforeRouteLeave(to, from, next) {
       console.log(this.$route.path);
       this.path = this.$route.path;
