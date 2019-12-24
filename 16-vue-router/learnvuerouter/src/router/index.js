@@ -30,10 +30,10 @@ const routes = [
       title: '首页'
     },
     children: [
-      {
-        path: '',
-        redirect: 'news'
-      },
+      // {
+      //   path: '',
+      //   redirect: 'news'
+      // },
       {
         path: 'news',   // 子路由不需要加 '/'
         component: HomeNews
@@ -78,13 +78,13 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   document.title = to.matched[0].meta.title
   // console.log(to);
-  console.log('+++++');
+  // console.log('+++++');
   next()
 })
 
 // 后置钩子
 router.afterEach((to, from) => {
-  console.log('-----');
+  // console.log('-----');
 })
 
 // 3. 将 router 对象传入到 Vue 实例
