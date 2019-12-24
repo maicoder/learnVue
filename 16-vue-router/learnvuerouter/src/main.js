@@ -8,7 +8,7 @@ Vue.config.productionTip = false
 //   console.log('test');
 // }
 
-Vue.prototype.name = 'codermy'
+// Vue.prototype.name = 'codermy'
 
 /* eslint-disable no-new */
 new Vue({

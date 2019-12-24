@@ -23,7 +23,7 @@
         console.log(this.$route);
 
         // this.test()
-        console.log(this.name);
+        // console.log(this.name);
       }
     }
   }
