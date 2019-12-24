@@ -4,6 +4,12 @@ import router from './router'   // router 是文件夹，会自动查找 index �
 
 Vue.config.productionTip = false
 
+// Vue.prototype.test = function () {
+//   console.log('test');
+// }
+
+Vue.prototype.name = 'codermy'
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

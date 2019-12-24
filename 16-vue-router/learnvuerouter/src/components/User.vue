@@ -18,8 +18,12 @@
     },
     methods: {
       btnClick() {
+        // 所有的组件都继承自 Vue 类的原型
         console.log(this.$router);
         console.log(this.$route);
+
+        // this.test()
+        console.log(this.name);
       }
     }
   }
