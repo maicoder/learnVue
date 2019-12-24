@@ -38,7 +38,7 @@
     },
     // 组件内的导航守卫 beforeRouteLeave
     beforeRouteLeave(to, from, next) {
-      console.log(this.$route.path);
+      // console.log(this.$route.path);
       this.path = this.$route.path;
       next()
     },

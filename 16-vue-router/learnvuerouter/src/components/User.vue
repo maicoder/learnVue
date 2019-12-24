@@ -16,6 +16,12 @@
         return this.$route.params.userId
       }
     },
+    created() {
+      console.log('User created');
+    },
+    destroyed() {
+      console.log('User destroyed');
+    },
     methods: {
       btnClick() {
         // 所有的组件都继承自 Vue 类的原型
