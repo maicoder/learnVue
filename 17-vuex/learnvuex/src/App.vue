@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <h2>{{message}}</h2>
-    <h2>{{counter}}</h2>
-    <button @click="counter++">+</button>
-    <button @click="counter--">-</button>
+    <h2>{{$store.state.counter}}</h2>
+    <button @click="addition">+</button>
+    <button @click="subtraction">-</button>
 
-    <hello-vuex :counter="counter"/>
+    <hello-vuex/>
   </div>
 </template>
 
@@ -19,8 +19,15 @@
     },
     data() {
       return {
-        message: '我是App组件',
-        counter: 0
+        message: '我是App组件'
+      }
+    },
+    methods: {
+      addition() {
+        this.$store.commit('increment')
+      },
+      subtraction() {
+        this.$store.commit('decrement')
       }
     }
   }
