@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+
+    <h2>----------- App内容: info 对象内容是否是响应式------------</h2>
+    <h2>{{$store.state.info}}</h2>
+    <button @click="updateInfo">修改信息</button>
+
+    <h2>----------- App内容 ------------</h2>
     <h2>{{message}}</h2>
     <h2>{{$store.state.counter}}</h2>
     <button @click="addition">+</button>
@@ -8,11 +14,13 @@
     <button @click="addCount(10)">+10</button>
     <button @click="addStudent">添加学生</button>
 
+    <h2>----------- App内容: getters 相关信息------------</h2>
     <h2>{{$store.getters.powerCounter}}</h2>
     <h2>{{$store.getters.more20stu}}</h2>
     <h2>{{$store.getters.more20stuLength}}</h2>
     <h2>{{$store.getters.moreAgestu(12)}}</h2>
 
+    <h2>----------- Hello Vuex内容------------</h2>
     <hello-vuex/>
   </div>
 </template>
@@ -51,6 +59,9 @@
       addStudent() {
         const stu = {id: 114, name: 'alan', age: 35}
         this.$store.commit('addStudent', stu)
+      },
+      updateInfo() {
+        this.$store.commit('updateInfo')
       }
     }
   }
