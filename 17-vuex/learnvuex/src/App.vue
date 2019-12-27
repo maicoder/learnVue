@@ -6,6 +6,9 @@
     <button @click="subtraction">-</button>
 
     <h2>{{$store.getters.powerCounter}}</h2>
+    <h2>{{$store.getters.more20stu}}</h2>
+    <h2>{{$store.getters.more20stuLength}}</h2>
+    <h2>{{$store.getters.moreAgestu(12)}}</h2>
 
     <hello-vuex/>
   </div>
