@@ -5,6 +5,8 @@
     <button @click="addition">+</button>
     <button @click="subtraction">-</button>
 
+    <h2>{{$store.getters.powerCounter}}</h2>
+
     <hello-vuex/>
   </div>
 </template>
