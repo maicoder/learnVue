@@ -42,17 +42,28 @@ const store = new Vuex.Store({
       state.students.push(stu)
     },
     updateInfo(state) {
+      state.info.name = 'why'
       // state.info.name = 'Vuex'
       // state.info['address'] = 'Los Angeles'
 
-      Vue.set(state.info, 'address', 'Los Angeles')
+      // Vue.set(state.info, 'address', 'Los Angeles')
 
       // delete state.info.age
-      Vue.delete(state.info, 'age')
+      // Vue.delete(state.info, 'age')
+
+      // 错误代码
+      // setTimeout(() => {
+      //   state.info.name = 'why'
+      // }, 1000)
     }
   },
   actions: {
-
+    aUpdateInfo(context, payload) {
+      setTimeout(() => {
+        context.commit('updateInfo')
+        console.log(payload);
+      },1000)
+    }
   },
   getters: {
     powerCounter(state) {

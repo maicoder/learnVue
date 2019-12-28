@@ -65,7 +65,8 @@
         this.$store.commit('addStudent', stu)
       },
       updateInfo() {
-        this.$store.commit('updateInfo')
+        // this.$store.commit('updateInfo')
+        this.$store.dispatch('aUpdateInfo', '我是payload')
       }
     }
   }
