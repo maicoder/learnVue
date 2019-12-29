@@ -36,7 +36,9 @@
 <script>
   import HelloVuex from "./components/HelloVuex";
   import {
-    INCREMENT
+    ADDSTUDENT,
+    DECREMENT,
+    INCREMENT, INCREMENTCOUNT
   } from './store/mutations-types'
 
   export default {
@@ -55,7 +57,7 @@
         this.$store.commit(INCREMENT)
       },
       subtraction() {
-        this.$store.commit('decrement')
+        this.$store.commit(DECREMENT)
       },
       addCount(count) {
         // payload 负载
@@ -64,13 +66,13 @@
 
         // 2.特殊的提交封装
         this.$store.commit({
-          type: 'incrementCount',
+          type: INCREMENTCOUNT,
           count
         })
       },
       addStudent() {
         const stu = {id: 114, name: 'alan', age: 35}
-        this.$store.commit('addStudent', stu)
+        this.$store.commit(ADDSTUDENT, stu)
       },
       updateInfo() {
         // this.$store.commit('updateInfo')
