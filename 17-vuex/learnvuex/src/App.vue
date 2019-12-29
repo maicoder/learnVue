@@ -1,6 +1,14 @@
 <template>
   <div id="app">
 
+    <h2>----------- App内容: modules 中的内容------------</h2>
+    <h2>{{$store.state.a.name}}</h2>
+    <button @click="updateName">修改名字</button>
+    <h2>{{$store.getters.fullName}}</h2>
+    <h2>{{$store.getters.fullName2}}</h2>
+    <h2>{{$store.getters.fullName3}}</h2>
+    <button @click="asyncUpdateName">异步修改名字</button>
+
     <h2>----------- App内容: info 对象内容是否是响应式------------</h2>
     <h2>{{$store.state.info}}</h2>
     <button @click="updateInfo">修改信息</button>
@@ -79,6 +87,12 @@
             console.log('里面完成了提交');
             console.log(res);
           })
+      },
+      updateName() {
+        this.$store.commit('updateName', 'lisi')
+      },
+      asyncUpdateName() {
+        this.$store.dispatch('aUpdateName')
       }
     }
   }
