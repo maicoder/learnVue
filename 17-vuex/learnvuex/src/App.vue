@@ -66,7 +66,19 @@
       },
       updateInfo() {
         // this.$store.commit('updateInfo')
-        this.$store.dispatch('aUpdateInfo', '我是payload')
+        // this.$store.dispatch('aUpdateInfo', '我是payload')
+        // this.$store.dispatch('aUpdateInfo', {
+        //   message: '我是负载的信息',
+        //   success: () => {
+        //     console.log('里面以及完成了');
+        //   }
+        // })
+        this.$store
+          .dispatch('aUpdateInfo', '我是负载的信息')
+          .then(res => {
+            console.log('里面完成了提交');
+            console.log(res);
+          })
       }
     }
   }

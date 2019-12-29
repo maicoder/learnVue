@@ -58,11 +58,25 @@ const store = new Vuex.Store({
     }
   },
   actions: {
+    // aUpdateInfo(context, payload) {
+    //   setTimeout(() => {
+    //     context.commit('updateInfo')
+    //     // console.log(payload);
+    //     console.log(payload.message);
+    //     payload.success();
+    //     // payload();
+    //   },1000)
+    // }
+
     aUpdateInfo(context, payload) {
-      setTimeout(() => {
-        context.commit('updateInfo')
-        console.log(payload);
-      },1000)
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          context.commit('updateInfo')
+          console.log(payload);
+
+          resolve('111111')
+        },1000)
+      })
     }
   },
   getters: {
