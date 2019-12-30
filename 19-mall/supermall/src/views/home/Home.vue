@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  import NavBar from 'components/common/NavBar/NavBar'
+  import NavBar from 'components/common/navbar/NavBar'
   import {getHomeMultidata} from "network/home"
 
   import {Swiper, SwiperItem} from 'components/common/swiper'
