@@ -6,8 +6,29 @@ export function request(config) {
     timeout: 5000
   })
 
+  // 请求拦截
+  instance.interceptors.request.use(config => {
+    console.log(config);
+    // 1. 比如 config 中的一些信息不符合服务器的要求
+    // 2. 比如每次发送网络请求时，都希望在界面上展示一个请求的图标
+    // 3. 某些网络请求（比如登录（token）），必须携带一些特殊的信息
+
+  }, error => {
+    console.log(error);
+  })
+
+  // 响应拦截
+  instance.interceptors.response.use(res => {
+    console.log(res);
+
+    return res
+  }, error => {
+    console.log(error);
+  })
+
   return instance(config)
 }
+
 
 // export function request(config) {
 //   return new Promise((resolve, reject) => {
