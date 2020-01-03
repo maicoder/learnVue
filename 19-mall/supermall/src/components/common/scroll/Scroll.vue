@@ -29,6 +29,8 @@
     },
     mounted() {
       // 1. 创建 BScroll 对象
+      // ref 如果是绑定在组件中的，那么通过 this.$refs.refname 获取到的是一个组件对象
+      // ref 如果是绑定在普通的元素中的，那么通过 this.$refs.refname 获取到的是一个元素对象
       this.scroll = new BScroll(this.$refs.wrapper, {
         click: true,
         probeType: this.probeType,
