@@ -2,7 +2,8 @@
   <div id="home" class="wrapper">
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
 
-    <scroll class="content" ref="scroll">
+    <scroll class="content" ref="scroll" :probe-type="3"
+            @scroll="contentScroll" :pull-up-load="true" @pullingUp="loadMore">
       <home-swiper :banners="banners"/>
       <recommend-view :recommends="recommends"/>
       <feature-view/>
@@ -13,7 +14,7 @@
 
 <!--    修饰符 .native 什么时候使用：-->
 <!--    在我们需要监听一个组件的原生事件时，必须给对应的的事件加上 native 修饰符，才能进行监听 -->
-    <back-top @click.native="backClick"/>
+    <back-top @click.native="backClick" v-show="isShowBackTop"/>
   </div>
 </template>
 
@@ -51,7 +52,8 @@
           'new': {page: 0, list: []},
           'sell': {page: 0, list: []}
         },
-        currentType: 'pop'
+        currentType: 'pop',
+        isShowBackTop: false
       }
     },
     computed: {
@@ -88,6 +90,12 @@
       backClick() {
         this.$refs.scroll.scrollTo(0, 0)
       },
+      contentScroll(position) {
+        this.isShowBackTop = (-position.y) > 1000
+      },
+      loadMore() {
+        this.getHomeGoods(this.currentType)
+      },
       /**
        * 网络请求相关的方法
        */
@@ -104,6 +112,8 @@
           // console.log(res);
           this.goods[type].list.push(...res.data.list)
           this.goods[type].page += 1
+
+          this.$refs.scroll.finishPullUp()
         })
       }
     }
@@ -141,6 +151,8 @@
     position: absolute;
     top: 44px;
     bottom: 49px;
+    left: 0;
+    right: 0;
   }
 
   /*.content {*/
