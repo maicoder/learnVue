@@ -1,13 +1,19 @@
 <template>
-  <div id="home">
+  <div id="home" class="wrapper">
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
-    <home-swiper :banners="banners"/>
-    <recommend-view :recommends="recommends"/>
-    <feature-view/>
-    <tab-control class="tab-control"
-                 :titles="['流行', '新款', '精选']" @tabClick="tabClick"/>
-    <goods-list :goods="showGoods"/>
 
+    <scroll class="content" ref="scroll">
+      <home-swiper :banners="banners"/>
+      <recommend-view :recommends="recommends"/>
+      <feature-view/>
+      <tab-control class="tab-control"
+                   :titles="['流行', '新款', '精选']" @tabClick="tabClick"/>
+      <goods-list :goods="showGoods"/>
+    </scroll>
+
+<!--    修饰符 .native 什么时候使用：-->
+<!--    在我们需要监听一个组件的原生事件时，必须给对应的的事件加上 native 修饰符，才能进行监听 -->
+    <back-top @click.native="backClick"/>
   </div>
 </template>
 
@@ -19,6 +25,8 @@
   import NavBar from 'components/common/navbar/NavBar'
   import TabControl from 'components/content/tabControl/TabControl'
   import GoodsList from 'components/content/goods/GoodsList'
+  import Scroll from "components/common/scroll/Scroll";
+  import BackTop from "components/content/backTop/BackTop";
 
   import {getHomeMultidata, getHomeGoods} from "network/home"
 
@@ -30,7 +38,9 @@
       FeatureView,
       NavBar,
       TabControl,
-      GoodsList
+      GoodsList,
+      Scroll,
+      BackTop
     },
     data() {
       return {
@@ -75,6 +85,9 @@
         }
 
       },
+      backClick() {
+        this.$refs.scroll.scrollTo(0, 0)
+      },
       /**
        * 网络请求相关的方法
        */
@@ -100,6 +113,8 @@
 <style scoped>
   #home {
     padding-top: 44px;
+    height: 100vh;
+    position: relative;
   }
 
   .home-nav {
@@ -118,4 +133,19 @@
     top: 44px;
     z-index: 9;
   }
+
+  .content {
+    /*height: 300px;*/
+    overflow: hidden;
+
+    position: absolute;
+    top: 44px;
+    bottom: 49px;
+  }
+
+  /*.content {*/
+  /*  height: calc(100% - 93px);*/
+  /*  overflow: hidden;*/
+  /*  margin-top: 44px;*/
+  /*}*/
 </style>
