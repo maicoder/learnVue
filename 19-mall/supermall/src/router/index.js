@@ -26,7 +26,7 @@ const routes = [
     component: Cart
   },
   {
-    path: 'profile',
+    path: '/profile',
     component: Profile
   }
 ]
