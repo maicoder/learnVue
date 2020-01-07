@@ -69,7 +69,8 @@
       this.getHomeGoods('pop')
       this.getHomeGoods('new')
       this.getHomeGoods('sell')
-
+    },
+    mounted() {
       // 3. 监听 item 中图片加载完成
       this.$bus.$on('itemImageLoad', () => {
         this.$refs.scroll.refresh()
