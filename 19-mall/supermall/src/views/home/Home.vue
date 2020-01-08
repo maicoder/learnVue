@@ -7,8 +7,7 @@
       <home-swiper :banners="banners"/>
       <recommend-view :recommends="recommends"/>
       <feature-view/>
-      <tab-control class="tab-control"
-                   :titles="['流行', '新款', '精选']" @tabClick="tabClick"/>
+      <tab-control :titles="['流行', '新款', '精选']" @tabClick="tabClick"/>
       <goods-list :goods="showGoods"/>
     </scroll>
 
@@ -72,14 +71,25 @@
     },
     mounted() {
       // 3. 监听 item 中图片加载完成
+      const refresh = this.debounce(this.$refs.scroll.refresh,200)
       this.$bus.$on('itemImageLoad', () => {
-        this.$refs.scroll.refresh()
+        // console.log('----');
+        refresh()
       })
     },
     methods: {
       /**
        * 事件监听相关的方法
        */
+      debounce(func, delay) {
+        let timer = null
+        return function (...args) {
+          if (timer) clearTimeout(timer)
+          timer = setTimeout(() => {
+            func.apply(this, args)
+          }, delay)
+        }
+      },
       tabClick(index) {
         switch (index) {
           case 0:
@@ -142,12 +152,6 @@
     left: 0;
     right: 0;
     top: 0;
-    z-index: 9;
-  }
-
-  .tab-control {
-    position: sticky;
-    top: 44px;
     z-index: 9;
   }
 
