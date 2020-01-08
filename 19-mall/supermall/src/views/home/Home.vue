@@ -2,12 +2,14 @@
   <div id="home" class="wrapper">
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
 
-    <scroll class="content" ref="scroll" :probe-type="3"
-            @scroll="contentScroll" :pull-up-load="true" @pullingUp="loadMore">
-      <home-swiper :banners="banners"/>
+    <tab-control :titles="['流行', '新款', '精选']"
+                 @tabClick="tabClick" ref="tabControl1" class="tab-control" v-show="isTabFixed"/>
+
+    <scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll" :pull-up-load="true" @pullingUp="loadMore">
+      <home-swiper :banners="banners" @swiperImageLoad="swiperImageLoad"/>
       <recommend-view :recommends="recommends"/>
       <feature-view/>
-      <tab-control :titles="['流行', '新款', '精选']" @tabClick="tabClick"/>
+      <tab-control :titles="['流行', '新款', '精选']" @tabClick="tabClick" ref="tabControl2"/>
       <goods-list :goods="showGoods"/>
     </scroll>
 
@@ -52,7 +54,9 @@
           'sell': {page: 0, list: []}
         },
         currentType: 'pop',
-        isShowBackTop: false
+        isShowBackTop: false,
+        tabOffsetTop: 0,
+        isTabFixed: false
       }
     },
     computed: {
@@ -70,7 +74,7 @@
       this.getHomeGoods('sell')
     },
     mounted() {
-      // 3. 监听 item 中图片加载完成
+      // 3. 监听 item 中图片加载完成 / 图片加载完的事件监听
       const refresh = this.debounce(this.$refs.scroll.refresh,200)
       this.$bus.$on('itemImageLoad', () => {
         // console.log('----');
@@ -102,16 +106,24 @@
             this.currentType = 'sell'
             break
         }
-
+        this.$refs.tabControl1.currentIndex = index;
+        this.$refs.tabControl2.currentIndex = index;
       },
       backClick() {
         this.$refs.scroll.scrollTo(0, 0)
       },
       contentScroll(position) {
+        // 1.判断 BackTop 是否显示
         this.isShowBackTop = (-position.y) > 1000
+
+        // 2.决定 TabControl 是否吸顶（position: flex）
+        this.isTabFixed = (-position.y) > this.tabOffsetTop
       },
       loadMore() {
         this.getHomeGoods(this.currentType)
+      },
+      swiperImageLoad() {
+        this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop;
       },
       /**
        * 网络请求相关的方法
@@ -139,7 +151,7 @@
 
 <style scoped>
   #home {
-    padding-top: 44px;
+    /*padding-top: 44px;*/
     height: 100vh;
     position: relative;
   }
@@ -148,11 +160,12 @@
     background-color: var(--color-tint);
     color: #fff;
 
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 9;
+    /*在使用浏览器原生滚动时，为了让导航不跟随一起滚动*/
+    /*position: fixed;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*top: 0;*/
+    /*z-index: 9;*/
   }
 
   .content {
@@ -164,6 +177,11 @@
     bottom: 49px;
     left: 0;
     right: 0;
+  }
+
+  .tab-control {
+    position: relative;
+    z-index: 9;
   }
 
   /*.content {*/
