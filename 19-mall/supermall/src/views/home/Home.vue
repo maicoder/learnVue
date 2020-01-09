@@ -74,7 +74,7 @@
       this.$refs.scroll.refresh()
     },
     deactivated() {
-      console.log('deactivated');
+      // console.log('deactivated');
       this.saveY = this.$refs.scroll.getScrollY()
     },
     created() {
