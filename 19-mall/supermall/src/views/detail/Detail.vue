@@ -1,11 +1,11 @@
 <template>
   <div id="detail">
     <detail-nav-bar class="detail-nav"/>
-    <scroll class="content">
+    <scroll class="content" ref="scroll">
       <detail-swiper :top-images="topImages"/>
       <detail-base-info :goods="goods"/>
       <detail-shop-info :shop="shop"/>
-      <detail-goods-info :detail-info="detailInfo"/>
+      <detail-goods-info :detail-info="detailInfo" @imageLoad="imageLoad"/>
     </scroll>
   </div>
 </template>
@@ -61,6 +61,11 @@
         // 4. 保存商品的详情数据
         this.detailInfo = data.detailInfo;
       })
+    },
+    methods: {
+      imageLoad() {
+        this.$refs.scroll.refresh();
+      }
     }
   }
 </script>
