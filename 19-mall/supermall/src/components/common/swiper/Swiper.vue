@@ -14,11 +14,11 @@
 </template>
 
 <script>
-	export default {
-		name: "Swiper",
+  export default {
+    name: "Swiper",
     props: {
       interval: {
-		    type: Number,
+        type: Number,
         default: 3000
       },
       animDuration: {
@@ -47,6 +47,7 @@
       // 1.操作DOM, 在前后添加Slide
       setTimeout(() => {
         this.handleDom();
+
         // 2.开启定时器
         this.startTimer();
       }, 100)
@@ -115,7 +116,7 @@
       /**
        * 操作DOM, 在DOM前后添加Slide
        */
-		  handleDom: function () {
+      handleDom: function () {
         // 1.获取要操作的元素
         let swiperEl = document.querySelector('.swiper');
         let slidesEls = swiperEl.getElementsByClassName('slide');
@@ -132,9 +133,11 @@
           this.totalWidth = swiperEl.offsetWidth;
           this.swiperStyle = swiperEl.style;
         }
+
         // 4.让swiper元素, 显示第一个(目前是显示前面添加的最后一个元素)
         this.setTransform(-this.totalWidth);
       },
+
       /**
        * 拖动事件的处理
        */
@@ -203,7 +206,7 @@
         this.startTimer();
       }
     }
-	}
+  }
 </script>
 
 <style scoped>
