@@ -31,6 +31,7 @@
   import BackTop from "components/content/backTop/BackTop";
 
   import {getHomeMultidata, getHomeGoods} from "network/home"
+  import {itemListenerMixin} from 'common/mixin'
 
   export default {
     name: "Home",
@@ -44,6 +45,7 @@
       Scroll,
       BackTop
     },
+    mixins: [itemListenerMixin],
     data() {
       return {
         banners: [],
@@ -57,8 +59,7 @@
         isShowBackTop: false,
         tabOffsetTop: 0,
         isTabFixed: false,
-        saveY: 0,
-        itemImgListener: null
+        saveY: 0
       }
     },
     computed: {
