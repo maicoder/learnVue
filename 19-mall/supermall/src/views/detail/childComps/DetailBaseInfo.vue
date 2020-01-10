@@ -11,7 +11,7 @@
       <span>{{goods.columns[1]}}</span>
       <span>{{goods.services[goods.services.length-1].name}}</span>
     </div>
-    <div class="info-service">
+    <div class="info-services">
       <span class="info-services-item" v-for="index in goods.services.length-1" :key="index">
         <img :src="goods.services[index-1].icon" alt="">
         <span>{{goods.services[index-1].name}}</span>
@@ -35,7 +35,7 @@
 </script>
 
 <style scoped>
-  .detail-baseInfo {
+  .base-info {
     padding: 10px 10px 0;
     border-bottom: 4px solid #c5baba;
   }
@@ -50,12 +50,12 @@
   .info-price {
     margin-bottom: 30px;
   }
-  .new-price {
+  .n-price {
     color: var(--color-tint);
     font-size: 30px;
     padding-right: 10px;
   }
-  .old-price {
+  .o-price {
     text-decoration: line-through;
     font-size: 16px;
     color: #ccc;
