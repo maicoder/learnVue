@@ -30,10 +30,9 @@
     methods:{
       imgLoad(){
         //判断所有图片都加载完，那么进行一次回调就可以了
-        //if(++this.counter === this. imagesLength) {
-
-        this.$emit("imageLoad")
-        //}
+        if(++this.counter === this.imagesLength) {
+          this.$emit("imageLoad")
+        }
       }
     },
     watch:{
