@@ -1,7 +1,7 @@
 <template>
   <div id="detail">
     <detail-nav-bar class="detail-nav"/>
-    <scroll class="content" ref="scroll">
+    <scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll">
       <detail-swiper :top-images="topImages"/>
       <detail-base-info :goods="goods"/>
       <detail-shop-info :shop="shop"/>
@@ -10,6 +10,8 @@
       <detail-comment-info :comment-info="commentInfo"/>
       <goods-list :goods="recommends"/>
     </scroll>
+    <back-top @click.native="backClick" v-show="isShowBackTop"/>
+    <detail-bottom-bar/>
   </div>
 </template>
 
@@ -21,9 +23,11 @@
   import DetailGoodsInfo from './childComps/DetailGoodsInfo'
   import DetailParamInfo from './childComps/DetailParamInfo'
   import DetailCommentInfo from './childComps/DetailCommentInfo'
+  import DetailBottomBar from './childComps/DetailBottomBar'
 
   import Scroll from 'components/common/scroll/Scroll'
   import GoodsList from 'components/content/goods/GoodsList'
+  import BackTop from 'components/content/backTop/BackTop'
 
   import {getDetail, getRecommend, Goods, Shop, GoodsParam} from 'network/detail'
   import {debounce} from 'common/utils'
@@ -40,7 +44,9 @@
       DetailGoodsInfo,
       DetailParamInfo,
       DetailCommentInfo,
-      GoodsList
+      GoodsList,
+      BackTop,
+      DetailBottomBar
     },
     mixins: [itemListenerMixin],
     data() {
@@ -53,7 +59,7 @@
         paramInfo: {},
         commentInfo: {},
         recommends: [],
-        itemImgListener: null
+        isShowBackTop: false
       }
     },
     created() {
@@ -102,6 +108,12 @@
     methods: {
       imageLoad() {
         this.$refs.scroll.refresh();
+      },
+      backClick() {
+        this.$refs.scroll.scrollTo(0, 0)
+      },
+      contentScroll(position) {
+        this.isShowBackTop = (-position.y) > 1000
       }
     }
   }
