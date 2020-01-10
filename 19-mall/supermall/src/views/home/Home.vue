@@ -57,7 +57,8 @@
         isShowBackTop: false,
         tabOffsetTop: 0,
         isTabFixed: false,
-        saveY: 0
+        saveY: 0,
+        itemImgListener: null
       }
     },
     computed: {
@@ -66,7 +67,7 @@
       }
     },
     destroyed() {
-      console.log('home destroy');
+      // console.log('home destroy');
     },
     activated() {
       // console.log('activated');
@@ -75,7 +76,11 @@
     },
     deactivated() {
       // console.log('deactivated');
+      // 1. 保存 Y 值
       this.saveY = this.$refs.scroll.getScrollY()
+
+      // 2. 取消全局事件的监听
+      this.$bus.$off('itemImgLoad', this.itemImgListener)
     },
     created() {
       // 1. 请求多个数据
@@ -87,12 +92,17 @@
       this.getHomeGoods('sell')
     },
     mounted() {
+      // 这个地方img标签确实被挂载，但是其中的图片还没有占据高度
+      // this.$refs.scroll.refresh对这个函数进行防抖操作
+
       // 3. 监听 item 中图片加载完成 / 图片加载完的事件监听
       const refresh = this.debounce(this.$refs.scroll.refresh,200)
-      this.$bus.$on('itemImageLoad', () => {
-        // console.log('----');
+
+      // 对监听的事件进行保存
+      this.itemImgListener = () => {
         refresh()
-      })
+      }
+      this.$bus.$on('itemImageLoad', this.itemImgListener)
     },
     methods: {
       /**
