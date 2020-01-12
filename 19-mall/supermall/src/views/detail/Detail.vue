@@ -1,14 +1,14 @@
 <template>
   <div id="detail">
-    <detail-nav-bar class="detail-nav"/>
+    <detail-nav-bar class="detail-nav" @titleClick="titleClick"/>
     <scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll">
       <detail-swiper :top-images="topImages"/>
       <detail-base-info :goods="goods"/>
       <detail-shop-info :shop="shop"/>
       <detail-goods-info :detail-info="detailInfo" @imageLoad="imageLoad"/>
-      <detail-param-info :param-info="paramInfo"/>
-      <detail-comment-info :comment-info="commentInfo"/>
-      <goods-list :goods="recommends"/>
+      <detail-param-info ref="params" :param-info="paramInfo"/>
+      <detail-comment-info ref="comment" :comment-info="commentInfo"/>
+      <goods-list ref="recommend" :goods="recommends"/>
     </scroll>
     <back-top @click.native="backClick" v-show="isShowBackTop"/>
     <detail-bottom-bar/>
@@ -59,7 +59,9 @@
         paramInfo: {},
         commentInfo: {},
         recommends: [],
-        isShowBackTop: false
+        isShowBackTop: false,
+        themeTopYs: [],
+        getThemeTopY: null
       }
     },
     created() {
@@ -98,6 +100,27 @@
         // console.log(res);
         this.recommends = res.data.list
       })
+
+      // this.$nextTick(()=>{
+      //     this.themeTopYs =[]
+      //     this.themeTopYs.push(0);
+      //     this.themeTopYs.push(this.$refs.params.$el.offsetTop)
+      //     this.themeTopYs.push(this.$refs.comment.$el.offsetTop)
+      //     this.themeTopYs.push(this.$refs.recommend.$el.offsetTop)
+      //     console.log(this.themeTopYs)
+      //
+      // })
+
+      // 4. 给 getThemeTopY 赋值（对给this。themeTopYs的操作进行防抖）
+      this.getThemeTopY = debounce(()=>{
+        this.themeTopYs =[]
+        this.themeTopYs.push(0);
+        this.themeTopYs.push(this.$refs.params.$el.offsetTop)
+        this.themeTopYs.push(this.$refs.comment.$el.offsetTop)
+        this.themeTopYs.push(this.$refs.recommend.$el.offsetTop)
+        console.log(this.themeTopYs)
+
+      },100)
     },
     mounted() {
       console.log('detail mounted')
@@ -108,6 +131,11 @@
     methods: {
       imageLoad() {
         this.$refs.scroll.refresh();
+        this.getThemeTopY()
+      },
+      titleClick(index) {
+        console.log(index);
+        this.$refs.scroll.scrollTo(0, -this.themeTopYs[index], 100)
       },
       backClick() {
         this.$refs.scroll.scrollTo(0, 0)
