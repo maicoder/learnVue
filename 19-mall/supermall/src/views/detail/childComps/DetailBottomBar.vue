@@ -34,9 +34,10 @@
 
 <style scoped>
   .bottom-bar {
-    height: 58px;
-    position: fixed;
+    height: 49px;
     background-color: #fff;
+
+    position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
@@ -63,7 +64,7 @@
     display: block;
     width: 22px;
     height: 22px;
-    margin: 10px auto 3px;
+    margin: 6px auto 3px;
     background: url("~assets/img/detail/detail_bottom.png") 0 0/100%;
   }
 
@@ -78,11 +79,11 @@
   .bar-right {
     font-size: 15px;
     color: #fff;
-    line-height: 58px;
+    line-height: 49px;
   }
 
   .bar-right .cart {
-    background-color: #fcf2ba;
+    background-color: #ffe817;
     color: #333;
   }
 
