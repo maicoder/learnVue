@@ -1,6 +1,6 @@
 <template>
   <div id="detail">
-    <detail-nav-bar class="detail-nav" @titleClick="titleClick"/>
+    <detail-nav-bar class="detail-nav" @titleClick="titleClick" ref="nav"/>
     <scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll">
       <detail-swiper :top-images="topImages"/>
       <detail-base-info :goods="goods"/>
@@ -27,11 +27,11 @@
 
   import Scroll from 'components/common/scroll/Scroll'
   import GoodsList from 'components/content/goods/GoodsList'
-  import BackTop from 'components/content/backTop/BackTop'
+  // import BackTop from 'components/content/backTop/BackTop'
 
   import {getDetail, getRecommend, Goods, Shop, GoodsParam} from 'network/detail'
   import {debounce} from 'common/utils'
-  import {itemListenerMixin} from 'common/mixin'
+  import {itemListenerMixin, backTopMixin} from 'common/mixin'
 
   export default {
     name: "Detail",
@@ -45,10 +45,10 @@
       DetailParamInfo,
       DetailCommentInfo,
       GoodsList,
-      BackTop,
+      // BackTop,
       DetailBottomBar
     },
-    mixins: [itemListenerMixin],
+    mixins: [itemListenerMixin, backTopMixin],
     data() {
       return {
         iid: null,
@@ -59,9 +59,9 @@
         paramInfo: {},
         commentInfo: {},
         recommends: [],
-        isShowBackTop: false,
         themeTopYs: [],
-        getThemeTopY: null
+        getThemeTopY: null,
+        currentIndex: 0
       }
     },
     created() {
@@ -87,61 +87,98 @@
         this.detailInfo = data.detailInfo;
 
         // 5. 获取参数信息
-        this.paramInfo = new GoodsParam(data.itemParams.info, data.itemParams.rule)
+        this.paramInfo = new GoodsParam(data.itemParams.info, data.itemParams.rule);
 
         // 6. 取出评论信息
         if (data.rate.cRate !== 0) {
-          this.commentInfo = data.rate.list[0]
+          this.commentInfo = data.rate.list[0];
         }
       })
 
       // 3. 请求推荐数据
       getRecommend().then(res => {
         // console.log(res);
-        this.recommends = res.data.list
+        this.recommends = res.data.list;
       })
 
+      // 1.第一次获取，值不对
+      // 值不对的原因，this.$refs.params.$el 压根没有渲染
+      // this.themeTopYs =[];
+      // this.themeTopYs.push(0);
+      // this.themeTopYs.push(this.$refs.params.$el.offsetTop);
+      // this.themeTopYs.push(this.$refs.comment.$el.offsetTop);
+      // this.themeTopYs.push(this.$refs.recommend.$el.offsetTop);
+      // console.log(this.themeTopYs);
+
       // this.$nextTick(()=>{
-      //     this.themeTopYs =[]
+      //  2.第二次获取值不对
+      //  值不对的原因：图片没有计算在内
+      //  根据最新的数据，对应的 DOM 是已经被渲染出来
+      //  但是图片依然是没有加载完（目前获取到 offsetTop 不包含其中的图片）
+      //  offsetTop 值不对的时候，都是因为图片的问题
+      //     this.themeTopYs =[];
       //     this.themeTopYs.push(0);
-      //     this.themeTopYs.push(this.$refs.params.$el.offsetTop)
-      //     this.themeTopYs.push(this.$refs.comment.$el.offsetTop)
-      //     this.themeTopYs.push(this.$refs.recommend.$el.offsetTop)
-      //     console.log(this.themeTopYs)
-      //
+      //     this.themeTopYs.push(this.$refs.params.$el.offsetTop);
+      //     this.themeTopYs.push(this.$refs.comment.$el.offsetTop);
+      //     this.themeTopYs.push(this.$refs.recommend.$el.offsetTop);
+      //     console.log(this.themeTopYs);
       // })
 
-      // 4. 给 getThemeTopY 赋值（对给this。themeTopYs的操作进行防抖）
+      // 4. 给 getThemeTopY 赋值（对给 this.themeTopYs 的操作进行防抖）
       this.getThemeTopY = debounce(()=>{
-        this.themeTopYs =[]
+        this.themeTopYs =[];
         this.themeTopYs.push(0);
-        this.themeTopYs.push(this.$refs.params.$el.offsetTop)
-        this.themeTopYs.push(this.$refs.comment.$el.offsetTop)
-        this.themeTopYs.push(this.$refs.recommend.$el.offsetTop)
-        console.log(this.themeTopYs)
-
+        this.themeTopYs.push(this.$refs.params.$el.offsetTop);
+        this.themeTopYs.push(this.$refs.comment.$el.offsetTop);
+        this.themeTopYs.push(this.$refs.recommend.$el.offsetTop);
+        console.log(this.themeTopYs);
       },100)
     },
     mounted() {
-      console.log('detail mounted')
+      // console.log('detail mounted');
     },
     destroyed() {
-      this.$bus.$off('itemImgLoad', this.itemImgListener)
+      this.$bus.$off('itemImgLoad', this.itemImgListener);
     },
     methods: {
       imageLoad() {
         this.$refs.scroll.refresh();
-        this.getThemeTopY()
+        this.getThemeTopY();
       },
       titleClick(index) {
-        console.log(index);
-        this.$refs.scroll.scrollTo(0, -this.themeTopYs[index], 100)
+        // console.log(index);
+        this.$refs.scroll.scrollTo(0, -this.themeTopYs[index], 200);
       },
-      backClick() {
-        this.$refs.scroll.scrollTo(0, 0)
-      },
+      // backClick() {
+      //   this.$refs.scroll.scrollTo(0, 0);
+      // },
       contentScroll(position) {
-        this.isShowBackTop = (-position.y) > 1000
+        this.isShowBackTop = (-position.y) > 1000;
+        // 1. 获取 y 值
+        const positionY = -position.y;
+        let pyLength = this.themeTopYs.length;
+
+        // 2. positionY 和主题中值进行对比
+        // [0, 7938, 9120, 9452]
+        // positionY 在 0 和 7938 之间， index = 0
+        // positionY 在 7938 和 9120 之间， index = 1
+        // positionY 在 9120 和 9452 之间，index = 2
+        // positionY 超过 9452， index = 3
+        for (let i = 0; i < pyLength; i++) {
+          // console.log(i);
+          // if (positionY > this.themeTopYs[i] && positionY < this.themeTopYs[i+1]) {
+          //
+          // }
+
+          // 或者在 themeTopYs 末尾添加  Number.MAX_VALUE
+
+          if (this.currentIndex !== i && (i < pyLength - 1 && positionY > this.themeTopYs[i] && positionY < this.themeTopYs[i+1]) || (i === pyLength - 1 && positionY > this.themeTopYs[i])) {
+            this.currentIndex = i;
+            console.log(this.currentIndex);
+            this.$refs.nav.currentIndex = this.currentIndex;
+          }
+        }
+
       }
     }
   }
