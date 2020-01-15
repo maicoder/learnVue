@@ -11,7 +11,23 @@ const store = new Vuex.Store({
   },
   mutations: {
     addCart(state, payload) {
-      state.carList.push(payload)
+      // payload 新添加的商品
+      // let oldProduct = null;
+      // for (let item of state.cartList) {
+      //   if (item.iid === payload.iid) {
+      //     oldProduct = item;
+      //   }
+      // }
+
+      // let oldProduct = state.carList.find(item => item.iid === payload.iid);
+
+      // 2. 判断 oldProduct
+      // if (oldProduct) {
+      //   oldProduct.count += 1;
+      // } else {
+      //   payload.count = 1;
+      //   state.carList.push(payload);
+      // }
     }
   }
 })
