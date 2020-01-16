@@ -132,7 +132,7 @@
         this.themeTopYs.push(this.$refs.comment.$el.offsetTop);
         this.themeTopYs.push(this.$refs.recommend.$el.offsetTop);
         console.log(this.themeTopYs);
-      },100)
+      }, 100)
     },
     mounted() {
       // console.log('detail mounted');
@@ -191,11 +191,11 @@
         product.count = 1
         product.checked = true
         // console.log(product);
-        
+
         // 2. 将商品添加到购物车里
         // this.$store.cartList.push()
         this.$store.commit('addCart', product)
-        
+
       }
     }
   }
