@@ -33,7 +33,7 @@
     },
     methods: {
       changeChecked() {
-        this.itemInfo.checked = !this.itemInfo.checked
+        this.itemInfo.checked = !this.itemInfo.checked;
       }
     }
   }
