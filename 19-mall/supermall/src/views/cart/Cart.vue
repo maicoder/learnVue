@@ -19,7 +19,7 @@
     name: "Cart",
     components: {
       NavBar,
-      CartList
+      CartList,
     },
     computed: {
       // 两种写法
