@@ -10,7 +10,7 @@
 
 <script>
   import Scroll from 'components/common/scroll/Scroll';
-  import CartListItem from './CartListItem'
+  import CartListItem from './CartListItem';
 
   import {mapState} from 'vuex'
 
