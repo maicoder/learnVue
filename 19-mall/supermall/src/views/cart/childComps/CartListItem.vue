@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import CheckButton from 'components/content/CheckButton/CheckButton'
+  import CheckButton from 'components/content/CheckButton/CheckButton';
 
   export default {
     name: "CartListItem",
