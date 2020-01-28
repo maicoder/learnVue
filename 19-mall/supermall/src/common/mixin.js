@@ -1,5 +1,5 @@
 import {debounce} from "./utils";
-import BackTop from 'components/content/backTop/BackTop'
+import BackTop from 'components/content/backTop/BackTop';
 
 export const itemListenerMixin = {
   data() {
