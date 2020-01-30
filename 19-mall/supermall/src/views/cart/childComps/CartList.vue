@@ -12,7 +12,7 @@
   import Scroll from 'components/common/scroll/Scroll';
   import CartListItem from './CartListItem';
 
-  import {mapState} from 'vuex'
+  import { mapGetters } from 'vuex';
 
   export default {
     name: "CartList",
@@ -21,7 +21,7 @@
       CartListItem
     },
     computed: {
-      ...mapState(['cartList'])
+      ...mapGetters(['cartList'])
     },
     activated() {
       this.$refs.scroll.refresh();
