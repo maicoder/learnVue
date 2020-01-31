@@ -6,6 +6,7 @@
 
     <cart-list/>
 
+    <cart-bottom-bar/>
   </div>
 </template>
 
