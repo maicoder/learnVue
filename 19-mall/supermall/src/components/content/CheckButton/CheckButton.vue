@@ -18,11 +18,11 @@
 
 <style scoped>
   .check-button {
-    border: 2px solid #AAA;
-    border-radius: 45%;
+    border: 2px solid #aaa;
+    border-radius: 50%;
   }
-  .isChecked {
-    border-color: white;
+  .check {
+    border-color: red;
     background: var(--color-tint);
   }
 </style>
