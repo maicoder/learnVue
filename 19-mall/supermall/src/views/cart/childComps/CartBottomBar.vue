@@ -1,7 +1,7 @@
 <template>
   <div class="bottom-bar">
     <div class="check-content">
-      <check-button class="check-button"/>
+      <check-button :is-checked="isSelectAll" @click.native="checkClick" class="check-button"/>
       <span>全选</span>
     </div>
 
@@ -9,7 +9,7 @@
       合计: {{totalPrice}}
     </div>
 
-    <div class="calcuate">
+    <div class="calcuate" @click="calcClick">
       去计算({{checkLength}})
     </div>
   </div>
@@ -36,7 +36,37 @@
       },
       checkLength() {
         // return this.$store.state.cartList.filter(item => item.checked).length
+
         return this.cartList.filter(item => item.checked).length
+      },
+      isSelectAll() {
+        if (this.cartList.length === 0) return false
+
+        // return !(this.cartList.filter(item => !item.checked).length)th
+
+        // return !this.cartList.find(item => !item.checked)
+
+        let isChecked = false
+        for (let item of this.cartList) {
+          if (!item.checked) {
+            return false
+          }
+        }
+        return true
+      }
+    },
+    methods: {
+      checkClick() {
+        if (this.isSelectAll) {
+          this.cartList.forEach(item => item.checked = false)
+        } else {
+          this.cartList.forEach(item => item.checked = true)
+        }
+      },
+      calcClick() {
+        if (!this.isSelectAll) {
+
+        }
       }
     }
   }
