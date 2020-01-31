@@ -12,7 +12,7 @@
     </scroll>
     <back-top @click.native="backClick" v-show="isShowBackTop"/>
     <detail-bottom-bar @addCart="addToCart"/>
-    <toast :message="message" :show="show"/>
+<!--    <toast :message="message" :show="show"/>-->
   </div>
 </template>
 
@@ -51,7 +51,7 @@
       GoodsList,
       // BackTop,
       DetailBottomBar,
-      Toast
+      // Toast
     },
     mixins: [itemListenerMixin, backTopMixin],
     data() {
@@ -67,8 +67,8 @@
         themeTopYs: [],
         getThemeTopY: null,
         currentIndex: 0,
-        message: '',
-        show: false
+        // message: '',
+        // show: false
       }
     },
     created() {
@@ -204,13 +204,15 @@
         // this.$store.commit('addCart', product);
         this.addCart(product).then(res => {
           // console.log(res);
-          this.show = true;
-          this.message = res;
+          // this.show = true;
+          // this.message = res;
+          //
+          // setTimeout(() => {
+          //   this.show = false;
+          //   this.message = ''
+          // }, 1500)
 
-          setTimeout(() => {
-            this.show = false;
-            this.message = ''
-          }, 1500)
+          this.$toast.show(res)
         })
 
         // this.$store.cartList.push();
