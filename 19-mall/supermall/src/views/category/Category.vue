@@ -7,10 +7,13 @@
 <script>
   import NavBar from 'components/common/navbar/NavBar';
 
+  import TabMenu from './childComps/TabMenu';
+
   export default {
     name: "Category",
     components: {
-      NavBar
+      NavBar,
+      TabMenu
     }
   }
 </script>
