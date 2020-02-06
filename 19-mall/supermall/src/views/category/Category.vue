@@ -14,17 +14,26 @@
   import NavBar from 'components/common/navbar/NavBar';
 
   import TabMenu from './childComps/TabMenu';
+  import TabContentCategory from './childComps/TabContentCategory';
+  import TabContentDetail from './childComps/TabContentDetail';
+
+  import TabControl from 'components/content/tabControl/TabControl';
+  import Scroll from 'components/common/scroll/Scroll';
+
   import {getCategory, getSubcategory} from 'network/category';
   import {POP, NEW, SELL} from 'common/const';
   import {getSubcategoryDetail} from "../../network/category";
-  import Scroll from "../../components/common/scroll/Scroll";
 
   export default {
     name: "Category",
     components: {
       Scroll,
       NavBar,
-      TabMenu
+      TabMenu,
+      TabControl,
+      Scroll,
+      TabContentDetail,
+      TabContentCategory
     },
     data() {
       return {
