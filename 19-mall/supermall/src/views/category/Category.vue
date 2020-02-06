@@ -1,11 +1,18 @@
 <template>
   <div id="category">
     <nav-bar class="nav-bar"><div slot="center">商品分类</div></nav-bar>
-    <div class="content">
-      <tab-menu :categories="categoryies" @selectItem="selectItem" />
-      <scroll id="tab-content">
 
+    <div class="content">
+      <tab-menu :categories="categoryies" @selectItem="selectItem"/>
+
+      <scroll id="tab-content" :data="[categoryData]" ref="scroll">
+        <div>
+          <tab-content-category :subcategories="showSubcategory"/>
+          <tab-control :title="['综合', '新品', '销量']" @ChangeIndex="tabClick"/>
+          <tab-content-detail :category-detail="showCategoryDetail"/>
+        </div>
       </scroll>
+
     </div>
   </div>
 </template>
@@ -27,7 +34,6 @@
   export default {
     name: "Category",
     components: {
-      Scroll,
       NavBar,
       TabMenu,
       TabControl,
