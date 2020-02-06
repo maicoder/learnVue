@@ -34,7 +34,10 @@
       }
     },
     mounted() {
+      // 1.请求分类数据
       this._getCategory();
+
+      // 2.监听图片加载完成
       this.$bus.$on('imgLoad', () => {
         this.$refs.scroll.refresh()
       })
