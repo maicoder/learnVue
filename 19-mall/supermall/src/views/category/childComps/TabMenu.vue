@@ -1,11 +1,8 @@
 <template>
   <scroll id="tab-menu"  v-if="categories.length">
     <div class="menu-list" >
-      <div class="menu-list-item"
-           :class="{active: index === currentIndex}"
-           v-for="(item, index) in categories"
-           :key="index"
-           @click="itemClick(index)">
+      <div class="menu-list-item" :class="{active: index === currentIndex}"
+           v-for="(item, index) in categories" :key="index" @click="itemClick(index)">
         {{item.title}}
       </div>
     </div>
